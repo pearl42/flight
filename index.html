@@ -53,11 +53,11 @@
 
         .clouds {
             position: absolute;
-            bottom: 0;
+            top: 80vh; /* Move the clouds container down */
             width: 100%;
-            height: 200px;
+            height: 50vh; /* Increase height to prevent clouds from being cut off */
             overflow: hidden;
-            z-index: -1;
+            z-index: 1; /* Bring clouds above other elements */
         }
 
         .cloud {
@@ -73,30 +73,35 @@
             background-image: url('cloud1.png');
             left: 0;
             transform: translateY(0);
+            z-index: 2; /* Ensure cloud is visible above the container */
         }
 
         .cloud.two {
             background-image: url('cloud2.png');
             left: 20%;
             transform: translateY(0);
+            z-index: 2;
         }
 
         .cloud.three {
             background-image: url('cloud3.png');
             left: 40%;
             transform: translateY(0);
+            z-index: 2;
         }
 
         .cloud.four {
             background-image: url('cloud1.png'); /* Same image as cloud1 */
             left: 60%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
+            z-index: 2;
         }
 
         .cloud.five {
             background-image: url('cloud2.png'); /* Same image as cloud2 */
             left: 80%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
+            z-index: 2;
         }
 
         /* Scattered clouds */
@@ -121,63 +126,54 @@
             background-image: url('cloud3.png');
             top: 120vh;
             left: 10%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.two {
             background-image: url('cloud1.png');
             top: 140vh;
             left: 50%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.three {
             background-image: url('cloud2.png');
             top: 160vh;
             left: 80%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.four {
             background-image: url('cloud3.png');
             top: 200vh;
             left: 30%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.five {
             background-image: url('cloud1.png');
             top: 240vh;
             left: 60%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.six {
             background-image: url('cloud2.png');
             top: 280vh;
             left: 20%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.seven {
             background-image: url('cloud3.png');
             top: 320vh;
             left: 70%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.eight {
             background-image: url('cloud1.png');
             top: 360vh;
             left: 40%;
-            transform: translateY(0);
         }
 
         .scattered-cloud.nine {
             background-image: url('cloud2.png');
             top: 400vh;
             left: 80%;
-            transform: translateY(0);
         }
 
         .skydive {
@@ -229,11 +225,11 @@
         </div>
     </div>
     <div class="clouds">
-        <div class="cloud one"></div>
-        <div class="cloud two"></div>
-        <div class="cloud three"></div>
-        <div class="cloud four"></div>
-        <div class="cloud five"></div>
+        <div class="cloud one" style="transform: translateY(0)"></div>
+        <div class="cloud two" style="transform: translateY(0)"></div>
+        <div class="cloud three" style="transform: translateY(0)"></div>
+        <div class="cloud four" style="transform: translateY(0)"></div>
+        <div class="cloud five" style="transform: translateY(0)"></div>
     </div>
     <div class="scattered-clouds">
         <div class="scattered-cloud one"></div>
@@ -250,14 +246,16 @@
     <script>
         window.addEventListener('scroll', function() {
             const clouds = document.querySelectorAll('.cloud');
+            const parallaxSpeeds = [0.2, 0.4, 0.6, 0.8, 1.0]; // Fixed parallax speeds
             clouds.forEach((cloud, index) => {
-                const parallaxAmount = 0.2 + Math.random() * 0.4; // Unique parallax speeds for each cloud
+                const parallaxAmount = parallaxSpeeds[index];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
             });
 
             const scatteredClouds = document.querySelectorAll('.scattered-cloud');
+            const scatteredParallaxSpeeds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
             scatteredClouds.forEach((cloud, index) => {
-                const parallaxAmount = 0.1 + Math.random() * 0.3; // Random parallax speeds
+                const parallaxAmount = scatteredParallaxSpeeds[index % scatteredParallaxSpeeds.length];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
             });
 
@@ -270,7 +268,8 @@
             if (scrollPosition + windowHeight > cloudsHeight / 2) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.5; // Skydive image scrolls faster than page
-                skydive.style.transform = `translateY(${scrollPosition * parallaxAmount}px)`;
+                const maxPosition = document.body.scrollHeight - skydive.offsetHeight; // Cap position to page height
+                skydive.style.transform = `translateY(${Math.min(scrollPosition * parallaxAmount, maxPosition)}px)`;
             } else {
                 skydive.style.display = 'none';
             }
