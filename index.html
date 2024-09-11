@@ -269,7 +269,7 @@
             // Show skydive image when clouds are in the middle of the viewport
             if (scrollPosition + windowHeight > cloudsHeight / 2) {
                 skydive.style.display = 'block';
-                const parallaxAmount = 0.4; // Skydive image scrolls faster than page
+                const parallaxAmount = 1.5; // Skydive image scrolls faster than page
                 skydive.style.transform = `translateY(${scrollPosition * parallaxAmount}px)`;
             } else {
                 skydive.style.display = 'none';
