@@ -9,7 +9,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             overflow-x: hidden;
-            background: linear-gradient(to bottom, #87CEFA, #FF4500); /* Sunset gradient */
+            background: linear-gradient(to bottom, #87CEFA, #FFA756); /* Sunset gradient */
             min-height: 100vh; /* Ensure gradient spans entire viewport height */
             display: flex;
             flex-direction: column;
@@ -35,7 +35,6 @@
         .content {
             position: relative;
             padding: 20px;
-            background: white;
             flex: 1; /* Allow this to expand and fill the remaining space */
         }
 
@@ -47,6 +46,9 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
         }
 
         .clouds {
@@ -178,6 +180,17 @@
             transform: translateY(0);
         }
 
+        .skydive {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: auto;
+            width: 100px; /* Adjust the width as needed */
+            opacity: 0.8;
+            display: none; /* Initially hidden */
+        }
+
         @media (max-width: 600px) {
             .sky h1 {
                 font-size: 2rem;
@@ -233,6 +246,7 @@
         <div class="scattered-cloud eight"></div>
         <div class="scattered-cloud nine"></div>
     </div>
+    <img src="skydive.png" class="skydive" alt="Skydive Image">
     <script>
         window.addEventListener('scroll', function() {
             const clouds = document.querySelectorAll('.cloud');
@@ -246,6 +260,20 @@
                 const parallaxAmount = 0.1 + Math.random() * 0.3; // Random parallax speeds
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
             });
+
+            const skydive = document.querySelector('.skydive');
+            const cloudsHeight = document.querySelector('.clouds').getBoundingClientRect().height;
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+
+            // Show skydive image when clouds are in the middle of the viewport
+            if (scrollPosition + windowHeight > cloudsHeight / 2) {
+                skydive.style.display = 'block';
+                const parallaxAmount = 0.3; // Parallax speed for skydive image
+                skydive.style.transform = `translateY(${scrollPosition * parallaxAmount}px)`;
+            } else {
+                skydive.style.display = 'none';
+            }
         });
     </script>
 </body>
