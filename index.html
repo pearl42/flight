@@ -66,7 +66,7 @@
             background-repeat: no-repeat;
             background-position: center;
             height: 100px; /* Adjust the height of the clouds */
-            width: auto;
+            width: 200px; /* Adjust the width of the clouds */
         }
 
         .cloud.one {
@@ -112,7 +112,7 @@
             background-repeat: no-repeat;
             background-position: center;
             height: 80px;
-            width: auto;
+            width: 150px; /* Adjust the width as needed */
             opacity: 0.8;
         }
 
@@ -251,7 +251,7 @@
         window.addEventListener('scroll', function() {
             const clouds = document.querySelectorAll('.cloud');
             clouds.forEach((cloud, index) => {
-                const parallaxAmount = index % 2 === 0 ? 0.2 : 0.4; // Two different parallax speeds
+                const parallaxAmount = 0.2 + Math.random() * 0.4; // Unique parallax speeds for each cloud
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
             });
 
@@ -269,7 +269,7 @@
             // Show skydive image when clouds are in the middle of the viewport
             if (scrollPosition + windowHeight > cloudsHeight / 2) {
                 skydive.style.display = 'block';
-                const parallaxAmount = 0.3; // Parallax speed for skydive image
+                const parallaxAmount = 0.4; // Skydive image scrolls faster than page
                 skydive.style.transform = `translateY(${scrollPosition * parallaxAmount}px)`;
             } else {
                 skydive.style.display = 'none';
