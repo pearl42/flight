@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight School Party</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #87CEFA, #FF4500); /* Sunset gradient */
+        }
+
+        .sky {
+            position: relative;
+            background: #87CEFA;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .sky h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        .content {
+            position: relative;
+            padding: 20px;
+            background: white;
+        }
+
+        .text-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .clouds {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .cloud {
+            position: absolute;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100px; /* Adjust the height of the clouds */
+            width: auto;
+        }
+
+        .cloud.one {
+            background-image: url('cloud1.png');
+            left: 0;
+            transform: translateY(0);
+        }
+
+        .cloud.two {
+            background-image: url('cloud2.png');
+            left: 20%;
+            transform: translateY(0);
+        }
+
+        .cloud.three {
+            background-image: url('cloud3.png');
+            left: 40%;
+            transform: translateY(0);
+        }
+
+        .cloud.four {
+            background-image: url('cloud4.png');
+            left: 60%;
+            transform: translateY(0);
+        }
+
+        .cloud.five {
+            background-image: url('cloud5.png');
+            left: 80%;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .sky h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sky">
+        <h1>FLIGHT SCHOOL</h1>
+    </div>
+    <div class="content">
+        <div class="text-section">
+            <p>Welcome to Flight School! Get ready for an adventure.</p>
+        </div>
+        <div class="text-section">
+            <p>Our party will take off with great music and fun activities.</p>
+        </div>
+        <div class="text-section">
+            <p>We can't wait to see you there!</p>
+        </div>
+        <!-- Add more text sections as needed -->
+    </div>
+    <div class="clouds">
+        <div class="cloud one"></div>
+        <div class="cloud two"></div>
+        <div class="cloud three"></div>
+        <div class="cloud four"></div>
+        <div class="cloud five"></div>
+    </div>
+    <script>
+        window.addEventListener('scroll', function() {
+            const clouds = document.querySelectorAll('.cloud');
+            clouds.forEach((cloud, index) => {
+                const parallaxAmount = index % 2 === 0 ? 0.2 : 0.4; // Two different parallax speeds
+                cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
