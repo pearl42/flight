@@ -179,12 +179,11 @@
         .skydive {
             position: absolute;
             bottom: 0;
-            left: 50%;
+            left: 30%;
             transform: translateX(-50%);
             height: auto;
-            width: 100px; /* Adjust the width as needed */
+            width: 180px; /* Adjust the width as needed */
             opacity: 0.8;
-            display: none; /* Initially hidden */
         }
 
         @media (max-width: 600px) {
@@ -246,14 +245,14 @@
     <script>
         window.addEventListener('scroll', function() {
             const clouds = document.querySelectorAll('.cloud');
-            const parallaxSpeeds = [0.2, 0.4, 0.6, 0.8, 1.0]; // Fixed parallax speeds
+            const parallaxSpeeds = [0.2, 0.28, 0.18, 0.31, 0.21]; // Fixed parallax speeds
             clouds.forEach((cloud, index) => {
                 const parallaxAmount = parallaxSpeeds[index];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
             });
 
             const scatteredClouds = document.querySelectorAll('.scattered-cloud');
-            const scatteredParallaxSpeeds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
+            const scatteredParallaxSpeeds = [0.1, 0.2, 0.3, 0.25, 0.35, 0.16, 0.27, 0.38, 0.29];
             scatteredClouds.forEach((cloud, index) => {
                 const parallaxAmount = scatteredParallaxSpeeds[index % scatteredParallaxSpeeds.length];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
@@ -265,7 +264,7 @@
             const windowHeight = window.innerHeight;
 
             // Show skydive image when clouds are in the middle of the viewport
-            if (scrollPosition + windowHeight > cloudsHeight / 2) {
+            if (scrollPosition > windowHeight/2) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.5; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - skydive.offsetHeight; // Cap position to page height
