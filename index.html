@@ -544,7 +544,7 @@
             const plane = document.querySelector('.plane');
 
             // Show skydive image when clouds are in the middle of the viewport
-            if (scrollPosition > windowHeight/1.05) && (scrollPosition < windowHeight*11) {
+            if (scrollPosition > windowHeight/1.05 && scrollPosition < windowHeight*11) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.15; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - (skydive.offsetHeight - 200); // Cap position to page height
