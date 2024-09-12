@@ -17,7 +17,7 @@
 
         .sky {
             position: relative;
-            background: #87CEFA;
+            /*background: #87CEFA;*/
             height: 100vh;
             text-align: center;
             display: flex;
@@ -56,7 +56,7 @@
             top: 80vh; /* Move the clouds container down */
             width: 100%;
             height: 50vh; /* Increase height to prevent clouds from being cut off */
-            overflow: hidden;
+            overflow: visible;
             z-index: 1; /* Bring clouds above other elements */
         }
 
@@ -71,30 +71,31 @@
 
         .cloud.one {
             background-image: url('cloud1.png');
-            left: 0;
+            left: -20%;
             transform: translateY(0);
             z-index: 4; /* Ensure cloud is visible above the container */
-            height: 0.830 * 30vw;
-            width: 1.593 * 30vw;
-            opacity: 0.85;
+            height: 24.9vw;
+            width: 47.79vw;
+            opacity: 0.65;
         }
 
         .cloud.two {
             background-image: url('cloud2.png');
-            left: 20%;
+            left: 5%;
             transform: translateY(0);
             z-index: 2;
-            height: 1.592 * 20vw;
-            width: 3.033 * 20vw;
+            height: 32vw;
+            width: 60vw;
+            opacity: 0.85;
         }
 
         .cloud.three {
             background-image: url('cloud3.png');
-            left: 40%;
+            left: 30%;
             transform: translateY(0);
             z-index: 1;
-            height: 0.728 * 50vw;
-            width: 0.560 * 50vw;
+            height: 28vw;
+            width: 36.4vw;
             opacity: 0.85;
         }
 
@@ -103,18 +104,19 @@
             left: 60%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
             z-index: 3;
-            height: 0.830 * 20vw;
-            width: 1.593 * 20vw;
+            height: 12.45vw;
+            width: 23.895vw;
             opacity: 0.85;
         }
 
         .cloud.five {
             background-image: url('cloud2.png'); /* Same image as cloud2 */
-            left: 80%;
+            left: 90%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
             z-index: 5;
-            height: 1.592 * 25vw;
-            width: 3.033 * 25vw;
+            height: 21vw;
+            width: 40vw;
+            opacity: 0.75;
         }
 
         /* Scattered clouds */
@@ -278,7 +280,7 @@
             // Show skydive image when clouds are in the middle of the viewport
             if (scrollPosition > windowHeight/2) {
                 skydive.style.display = 'block';
-                const parallaxAmount = 1.5; // Skydive image scrolls faster than page
+                const parallaxAmount = 1.3; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - skydive.offsetHeight; // Cap position to page height
                 skydive.style.transform = `translateY(${Math.min(scrollPosition * parallaxAmount, maxPosition)}px)`;
             } else {
