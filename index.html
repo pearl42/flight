@@ -53,20 +53,6 @@
             margin: auto;
             font-size:22px;
         }
-        .text-section2 {
-            min-height: 30vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            color: white;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
-            max-width: 80vw;
-            font-size:22px;
-        }
 
         .clouds {
             position: absolute;
@@ -263,7 +249,8 @@
         .mountainsandwater {
             width: 100vw;
             min-height: 100px;
-            height:auto;
+            height:100vh;
+            overflow:hidden;
         }
         p {
             z-index:9;
@@ -282,6 +269,7 @@
   height: 100vh;
   background-image: linear-gradient(0deg, #182848, #2980b9);
     bottom: 85px;
+    z-index:-1;
 }
 
 .bubble {
@@ -415,6 +403,21 @@
   animation-duration: 19s;
   opacity: 0.3;
 }
+        .text-sectionocean {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
+            max-width: 80vw;
+            margin: auto;
+            font-size:22px;
+        }
 
     </style>
 </head>
@@ -502,6 +505,7 @@
         <img src="rainiersun2.png" class="footer">
         <img src="splash.png" class="splash">
          <div class="ocean">
+             <p>Search your boarding pass:</p>
           <div class="bubble bubble--1"></div>
           <div class="bubble bubble--2"></div>
           <div class="bubble bubble--3"></div>
