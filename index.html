@@ -65,15 +65,18 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            height: 100px; /* Adjust the height of the clouds */
-            width: 200px; /* Adjust the width of the clouds */
+            /*height: 100px;  Adjust the height of the clouds */
+            /*width: 200px;  Adjust the width of the clouds */
         }
 
         .cloud.one {
             background-image: url('cloud1.png');
             left: 0;
             transform: translateY(0);
-            z-index: 2; /* Ensure cloud is visible above the container */
+            z-index: 4; /* Ensure cloud is visible above the container */
+            height: 0.830 * 30vw;
+            width: 1.593 * 30vw;
+            opacity: 0.85;
         }
 
         .cloud.two {
@@ -81,27 +84,37 @@
             left: 20%;
             transform: translateY(0);
             z-index: 2;
+            height: 1.592 * 20vw;
+            width: 3.033 * 20vw;
         }
 
         .cloud.three {
             background-image: url('cloud3.png');
             left: 40%;
             transform: translateY(0);
-            z-index: 2;
+            z-index: 1;
+            height: 0.728 * 50vw;
+            width: 0.560 * 50vw;
+            opacity: 0.85;
         }
 
         .cloud.four {
             background-image: url('cloud1.png'); /* Same image as cloud1 */
             left: 60%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
-            z-index: 2;
+            z-index: 3;
+            height: 0.830 * 20vw;
+            width: 1.593 * 20vw;
+            opacity: 0.85;
         }
 
         .cloud.five {
             background-image: url('cloud2.png'); /* Same image as cloud2 */
             left: 80%;
             transform: scaleX(-1) translateY(0); /* Flip horizontally */
-            z-index: 2;
+            z-index: 5;
+            height: 1.592 * 25vw;
+            width: 3.033 * 25vw;
         }
 
         /* Scattered clouds */
@@ -178,7 +191,6 @@
 
         .skydive {
             position: absolute;
-            bottom: 0;
             left: 30%;
             transform: translateX(-50%);
             height: auto;
