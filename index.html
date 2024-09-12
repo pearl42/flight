@@ -181,7 +181,7 @@
 
         .scattered-cloud.five {
             background-image: url('cloud1.png');
-            top: 400vh;
+            top: 350vh;
             left: 90%;
             transform: scaleX(-1);
         }
@@ -213,23 +213,23 @@
         }
         .scattered-cloud.ten {
             background-image: url('cloud3.png');
-            top: 860vh;
+            top: 720vh;
             left: 70%;
         }
         .scattered-cloud.eleven {
             background-image: url('cloud1.png');
-            top: 890vh;
+            top: 860vh;
             left: 20%;
             transform: scaleX(-1);
         }
         .scattered-cloud.twelve {
             background-image: url('cloud2.png');
-            top: 990vh;
+            top: 900vh;
             left: 90%;
         }
         .scattered-cloud.thirteen {
             background-image: url('cloud3.png');
-            top: 1210vh;
+            top: 1010vh;
             left: 40%;
         }
 
@@ -241,6 +241,10 @@
             width: 180px; /* Adjust the width as needed */
             opacity: 0.8;
             display:none;
+        }
+        .plane {
+            top: 600vh;
+            left: 100%;
         }
 
         @media (max-width: 600px) {
@@ -275,18 +279,21 @@
             <p>Do I actually enjoy all my hobbies or do I just think they look cool?</p>
         </div>
         <div class="text-section">
+            <p></p>
+        </div>
+        <div class="text-section">
             <p>I will be indulging in NONE of such existential worry on my birthday :)</p>
         </div>
         <div class="text-section">
-            <p>But in the vein of getting to know myself better this year, there are some MUCH easier questions to ask!</p>
+            <p>Instead, in the vein of getting to know myself better this year, there are some MUCH easier questions I want to ask:</p>
         </div>
-        <div class="text-section2" style="justify-content:left;">
+        <div class="text-section">
             <p>Do I actually like Minor figures oat milk best, or do I just like that they put me on the cover of the bottle?</p>
         </div>
-        <div class="text-section2" style="justify-content:right;">
+        <div class="text-section">
             <p>Is Simply Orange orange juice actually better, or am I just a sheep in Big Orange’s capitalist game?</p>
         </div>
-        <div class="text-section2" style="justify-content:left;">
+        <div class="text-section">
             <p>Is Tito's really the best vodka or do I just have decades-long brand loyalty?</p>
         </div>
         <div class="text-section">
@@ -330,6 +337,7 @@
         <div class="scattered-cloud twelve"></div>
         <div class="scattered-cloud thirteen"></div>
     </div>
+    <img src="flight.png" class="plane">
     <img src="skydive.png" class="skydive" alt="Skydive Image">
     <img src="rainiersun2.png" class="footer">
     <script>
@@ -342,7 +350,7 @@
             });
 
             const scatteredClouds = document.querySelectorAll('.scattered-cloud');
-            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.35, 0.45, 0.26, 0.37, 0.44, 0.39, 0.2, 0.19, 0.23, 0.15];
+            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.32, 0.45, 0.26, 0.37, 0.24, 0.20, 0.39, 0.19, 0.23, 0.15];
             scatteredClouds.forEach((cloud, index) => {
                 const parallaxAmount = scatteredParallaxSpeeds[index % scatteredParallaxSpeeds.length];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
@@ -352,6 +360,7 @@
             const cloudsHeight = document.querySelector('.clouds').getBoundingClientRect().height;
             const scrollPosition = window.scrollY;
             const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
 
             // Show skydive image when clouds are in the middle of the viewport
             if (scrollPosition > windowHeight/1.05) {
@@ -361,6 +370,14 @@
                 skydive.style.transform = `translateY(${Math.min((scrollPosition * parallaxAmount - windowHeight/9), maxPosition)}px)`;
             } else {
                 skydive.style.display = 'none';
+            }
+            
+            if (scrollPosition > windowHeight*5.4) {
+                const parallaxAmount = 1.15; // Skydive image scrolls faster than page
+                const maxPosition = (windowWidth+300); // Cap position to page height
+                plane.style.transform = `translateX(${Math.min((scrollPosition * parallaxAmount - windowHeight*5.4), maxPosition)}px)`;
+            } else {
+                //plane.style.display = 'none';
             }
         });
     </script>
