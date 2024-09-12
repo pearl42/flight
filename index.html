@@ -268,13 +268,20 @@
         p {
             z-index:9;
         }
+        .splash {
+            position: relative;
+            bottom: 70px;
+            width: 120px;
+            left: 30%;
+        }
 
         
 .ocean {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(0deg, #182848, #2980b9)
+  background-image: linear-gradient(0deg, #182848, #2980b9);
+    bottom: 85px;
 }
 
 .bubble {
@@ -493,7 +500,7 @@
     <img src="skydive.png" class="skydive" alt="Skydive Image">
     <div class="mountainswater">
         <img src="rainiersun2.png" class="footer">
-        <img src="splash.png" class="footer">
+        <img src="splash.png" class="splash">
          <div class="ocean">
           <div class="bubble bubble--1"></div>
           <div class="bubble bubble--2"></div>
@@ -533,7 +540,7 @@
             const plane = document.querySelector('.plane');
 
             // Show skydive image when clouds are in the middle of the viewport
-            if (scrollPosition > windowHeight/1.05) {
+            if (scrollPosition > windowHeight/1.05) && (scrollPosition < windowHeight*11) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.15; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - (skydive.offsetHeight - 200); // Cap position to page height
