@@ -210,12 +210,12 @@
         }
         .scattered-cloud.twelve {
             background-image: url('cloud2.png');
-            top: 960vh;
+            top: 990vh;
             left: 90%;
         }
         .scattered-cloud.thirteen {
             background-image: url('cloud3.png');
-            top: 1010vh;
+            top: 1210vh;
             left: 40%;
         }
 
@@ -343,7 +343,7 @@
             if (scrollPosition > windowHeight/1.05) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.15; // Skydive image scrolls faster than page
-                const maxPosition = document.body.scrollHeight - (skydive.offsetHeight + 100px); // Cap position to page height
+                const maxPosition = document.body.scrollHeight - (skydive.offsetHeight + 100); // Cap position to page height
                 skydive.style.transform = `translateY(${Math.min((scrollPosition * parallaxAmount - windowHeight/7), maxPosition)}px)`;
             } else {
                 skydive.style.display = 'none';
