@@ -131,12 +131,13 @@
 
         .scattered-cloud {
             position: absolute;
-            background-size: cover;
+            background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             height: 280px;
             width: 350px; /* Adjust the width as needed */
             opacity: 0.8;
+            z-index: 5;
         }
 
         /* Example scattered clouds */
@@ -208,6 +209,11 @@
             .sky h1 {
                 font-size: 2rem;
             }
+        }
+        .footer {
+            width: 100vw;
+            position:absolute;
+            bottom:0px;
         }
     </style>
 </head>
@@ -281,6 +287,7 @@
         <div class="scattered-cloud nine"></div>
     </div>
     <img src="skydive.png" class="skydive" alt="Skydive Image">
+    <img src="rainiersun.png" class="footer">
     <script>
         window.addEventListener('scroll', function() {
             const clouds = document.querySelectorAll('.cloud');
