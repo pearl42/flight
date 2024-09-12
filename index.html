@@ -238,6 +238,9 @@
             width: 100vw;
             bottom:0px;
         }
+        p {
+            z-index:9;
+        }
     </style>
 </head>
 <body>
@@ -337,11 +340,11 @@
             const windowHeight = window.innerHeight;
 
             // Show skydive image when clouds are in the middle of the viewport
-            if (scrollPosition > windowHeight/1.2) {
+            if (scrollPosition > windowHeight/1.05) {
                 skydive.style.display = 'block';
-                const parallaxAmount = 1.2; // Skydive image scrolls faster than page
+                const parallaxAmount = 1.5; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - skydive.offsetHeight; // Cap position to page height
-                skydive.style.transform = `translateY(${Math.min(scrollPosition * parallaxAmount, maxPosition)}px)`;
+                skydive.style.transform = `translateY(${Math.min((scrollPosition * parallaxAmount - windowHeight/2), maxPosition)}px)`;
             } else {
                 skydive.style.display = 'none';
             }
