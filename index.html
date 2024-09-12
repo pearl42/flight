@@ -244,7 +244,7 @@
         }
         .plane {
             position:absolute;
-            top: 1040vh;
+            top: 1290vh;
             right: -170px;
             width: 160px;
             height:auto;
@@ -377,10 +377,10 @@
                 skydive.style.display = 'none';
             }
             
-            if (scrollPosition > windowHeight*9.4) {
+            if (scrollPosition > windowHeight*11.9) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*10), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
             } else {
                 //plane.style.display = 'none';
             }
