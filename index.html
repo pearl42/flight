@@ -53,6 +53,20 @@
             margin: auto;
             font-size:22px;
         }
+        .text-section2 {
+            min-height: 30vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
+            max-width: 80vw;
+            font-size:22px;
+        }
 
         .clouds {
             position: absolute;
@@ -255,24 +269,24 @@
             <p>Is lamb my favorite meat or did my parents tell me it should be?</p>
         </div>
         <div class="text-section">
-            <p> Do I actually enjoy all my hobbies or do I just think they look cool?</p>
+            <p>Do I really hate grey or did Tiktok tell me I should?</p>
         </div>
         <div class="text-section">
-            <p>Are my mannerisms really "being polite" or am I just afraid of rejection?</p>
+            <p>Do I actually enjoy all my hobbies or do I just think they look cool?</p>
         </div>
         <div class="text-section">
-            <p>I don’t want to think about any of these questions on my birthday :)</p>
+            <p>I will be indulging in NONE of such existential worry on my birthday :)</p>
         </div>
         <div class="text-section">
             <p>But in the vein of getting to know myself better this year, there are some MUCH easier questions to ask!</p>
         </div>
-        <div class="text-section">
+        <div class="text-section2" style="justify-content:left;">
             <p>Do I actually like Minor figures oat milk best, or do I just like that they put me on the cover of the bottle?</p>
         </div>
-        <div class="text-section">
+        <div class="text-section2" style="justify-content:right;">
             <p>Is Simply Orange orange juice actually better, or am I just a sheep in Big Orange’s capitalist game?</p>
         </div>
-        <div class="text-section">
+        <div class="text-section2" style="justify-content:left;">
             <p>Is Tito's really the best vodka or do I just have decades-long brand loyalty?</p>
         </div>
         <div class="text-section">
@@ -328,7 +342,7 @@
             });
 
             const scatteredClouds = document.querySelectorAll('.scattered-cloud');
-            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.35, 0.45, 0.26, 0.37, 0.48, 0.39, 0.2, 0.19, 0.23, 0.12];
+            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.35, 0.45, 0.26, 0.37, 0.44, 0.39, 0.2, 0.19, 0.23, 0.15];
             scatteredClouds.forEach((cloud, index) => {
                 const parallaxAmount = scatteredParallaxSpeeds[index % scatteredParallaxSpeeds.length];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
@@ -343,8 +357,8 @@
             if (scrollPosition > windowHeight/1.05) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.15; // Skydive image scrolls faster than page
-                const maxPosition = document.body.scrollHeight - (skydive.offsetHeight + 100); // Cap position to page height
-                skydive.style.transform = `translateY(${Math.min((scrollPosition * parallaxAmount - windowHeight/7), maxPosition)}px)`;
+                const maxPosition = document.body.scrollHeight - (skydive.offsetHeight - 200); // Cap position to page height
+                skydive.style.transform = `translateY(${Math.min((scrollPosition * parallaxAmount - windowHeight/9), maxPosition)}px)`;
             } else {
                 skydive.style.display = 'none';
             }
