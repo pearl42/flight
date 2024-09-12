@@ -378,9 +378,9 @@
             }
             
             if (scrollPosition > windowHeight*5.4) {
-                const parallaxAmount = 1.15; // Skydive image scrolls faster than page
+                const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = (windowWidth+300); // Cap position to page height
-                plane.style.transform = `translateX(${Math.min((scrollPosition * parallaxAmount - windowHeight*5.4), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.min((scrollPosition * parallaxAmount + windowHeight*5.4), maxPosition)}px)`;
             } else {
                 //plane.style.display = 'none';
             }
