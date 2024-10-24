@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight School Party</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #87CEFA, #FFA756); /* Sunset gradient */
+            min-height: 100vh; /* Ensure gradient spans entire viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+ 
+        .content {
+		max-height:100vh;
+            	position: relative;
+            	padding: 20px;
+            	flex: 1; /* Allow this to expand and fill the remaining space */
+		text-align:center;
+		align-content:center;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
+		font-size:22px;
+		font-weight: bold;
+		align-items:center;
+        }
+
+	</style>
+
+<div class="content">
+<img id="boardingpassimg" style="width:100%;max-height:50vh;"></img>
+    <div class="name-text" id="name-text"></div>
+ <div class = 'formnow'>
+            <p style="font-size:18px;">This reservation has two associated boarding passes—how many people are checking in?</p>
+            <form
+	action="https://formie.io/form/fedcfa70-ab09-4d45-a308-4d2699886e97"
+	method="POST"
+>
+    <!-- Optional: Redirect to your success page -->
+    <input name="_redirect" type="hidden" value="http://pearlieeras.com/success">
+
+    <!-- Optional: Redirect to your error page -->
+    <!--<input name="_redirect_error" type="hidden" value="https://yoursite/error">-->
+
+	<input name='name' type='text' id='name'>
+	<select name='of-tickets'>
+		<option>0</option>
+		<option>1</option>
+		<option>2</option>
+    </select>
+
+    <button>Submit</button>
+</form>
+</div>
+</div>
+ <script>
+        var querystring = location.search.toUpperCase();
+        var guest
+        console.log(querystring);
+        if (querystring == '?KKLKPW') {
+            guest = 'Kazue and Kevin';
+		document.getElementById('boardingpassimg').src = "RHLKPW.png";	
+        } else if (querystring == '?LOMLEL'){
+            guest = 'Love of My Life';
+        } else if (querystring == '?NNLKPW'){
+            guest = 'Nick and Nessa';
+        } else if (querystring == '?RHLKPW'){
+            guest = 'Ryan Hammond';
+        } else if (querystring == '?MJLKPW'){
+            guest = 'Mack and Jason';
+        } else if (querystring == '?CCLKPW'){
+            guest = 'Cristina and Connor';
+        } else if (querystring == '?ADTBH'){
+            guest = 'Andra';
+        } else if (querystring == '?TTLKPW'){
+            guest = 'Tina and Thomas';
+        } else if (querystring == '?LAMBY'){
+            guest = 'Lamby (+Zeba!)';
+        } else if (querystring == '?LILKPW'){
+            guest = 'Linda and Ian';
+        } else if (querystring == '?GABBO'){
+            guest = 'Gabby';
+        } else if (querystring == '?VGLKPW'){
+            guest = 'Vaish';
+        } else if (querystring == '?MCLKPW'){
+            guest = 'Mia and Chris';
+        } else if (querystring == '?JGLKPW'){
+            guest = 'Julia and Gabe';
+	} else if (querystring == '?DDLKPW'){
+            guest = 'Des and Dre';
+        } else if (querystring == '?KHLKPW'){
+            guest = 'Kara and Hayden';
+	} else {
+            guest = 'guest';
+        }
+
+        if (querystring != undefined){
+            document.getElementById('name-text').innerText = 'Welcome, ' +guest;
+            document.getElementsByName('_redirect')[0].value = 'http://pearlieeras.com/success' + querystring;
+        } else {
+            document.getElementsByName('_redirect')[0].value = 'http://pearlieeras.com/success?DONE';
+        }
+    </script>
+</body>
+</html>
