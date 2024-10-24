@@ -501,12 +501,12 @@
         <img src="splash.png" class="splash">
          <div class="ocean">
              <div style="margin:auto;width:100vw;text-align:center;position:relative;top:20vh;color:white;">
-                 <p style="margin:0px;font-weight:bold;text-align:center;padding:20px;">Search your boarding pass:</p>
-                 <label for="fname">First name:</label>
-                  <input type="text" id="fname" name="fname"><br><br>
-                  <label for="lname">Last name:</label>
-                  <input type="text" id="lname" name="lname"><br><br>
-                  <input type="submit" value="Submit">
+                 <p>To check in to your flight, search your reservation code:</p>
+        	    <input style="opacity:0.7;outline-width:0px;" name='presale' type='text' id='presalecode' value="Reservation Code" onclick="clickin();">
+        	    <input style="opacity:0.7;outline-width:0px;" name='presale' type='text' id='ssn' value="Social Security Number" onclick="clickinssn();">
+                <button onclick="submit();">Submit</button>
+                <p style="font-weight:bold;color:red;visibility:hidden;" id="invalid">This is not a valid presale code</p>
+                    </div>
              </div>
           <div class="bubble bubble--1"></div>
           <div class="bubble bubble--2"></div>
@@ -563,6 +563,30 @@
                 //plane.style.display = 'none';
             }
         });
+        function clickin() {
+            var curval = document.getElementById('presalecode').value;
+            if (curval == 'Reservation Code'){
+                document.getElementById('presalecode').value = '';
+            }
+        }
+	    function clickinssn() {
+            var curval = document.getElementById('ssn').value;
+            if (curval == 'Social Security Number'){
+                document.getElementById('ssn').value = '';
+            }
+        }
+        function submit() {
+            var allcodes = ['KKLKPW', 'LOMLEL', 'LAMBY', 'NNLKPW', 'RHLKPW', 'MJLKPW', 'CCLKPW', 'ADTBH', 'TTLKPW', 'DDLKPW', 'LILKPW','GABBO', 'MCLKPW', 'VGLKPW', 'JJLKPW', 'JGLKPW', 'KHLKPW'];
+            var submitval = document.getElementById('presalecode').value.toUpperCase();
+		submitval = submitval.trim();
+            if (allcodes.includes(submitval)){
+                console.log("presale code exists!");
+                location.href = '/boardingpass?'+submitval;
+            }
+            else {
+                document.getElementById('invalid').style.visibility = 'visible';
+            }
+        }
     </script>
 </body>
 </html>
