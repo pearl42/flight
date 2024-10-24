@@ -410,13 +410,16 @@
     width: 1900px;
 }
 .arrow-container {
-  width: 25px;
+  width: 36px;
   animation: bounce 1600ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
   height: 20px;
+	position:absolute;
+	top:85%;
+	right:50%;
 }
 
 .arrow-down {
-  height: 6px;
+  height: 10px;
   background: white;
   transform: rotate(45deg);
   transform-origin: 0% 0%;
@@ -447,7 +450,7 @@
 <body>
     <div class="sky">
         <img class="giffle" src="flightwebp.webp"></img>
-        <div class="arrow-container" style="visibility:hidden;">
+        <div id="arrowcontainer" class="arrow-container" style="visibility:hidden;">
             <div class="arrow-down"></div>
         </div>
   </body>
@@ -626,7 +629,7 @@
 
 	    setTimeout(function() {
                
-                document.getElementById('arrow-container').style.visibility = 'visible';
+                document.getElementById('arrowcontainer').style.visibility = 'visible';
             }, 9000);
     </script>
 </body>
