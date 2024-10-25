@@ -13,6 +13,7 @@
             min-height: 100vh; /* Ensure gradient spans entire viewport height */
             display: flex;
             flex-direction: column;
+		color:white;
         }
  
         .content {
@@ -31,7 +32,7 @@
 	</style>
 
 <div class="content">
-<img id="boardingpassimg" style="width:100%;max-height:50vh;"></img>
+<img id="boardingpassimg" src="" style="width:90%;max-height:50vh;margin:20px auto;"></img>
     <div class="name-text" id="name-text"></div>
  <div class = 'formnow'>
             <p style="font-size:18px;">This reservation has two associated boarding passes—how many people are checking in?</p>
@@ -99,6 +100,7 @@
 
         if (querystring != undefined){
             document.getElementById('name-text').innerText = 'Welcome, ' +guest;
+		document.getElementById('name').value = guest;
             document.getElementsByName('_redirect')[0].value = 'http://pearlieeras.com/success' + querystring;
         } else {
             document.getElementsByName('_redirect')[0].value = 'http://pearlieeras.com/success?DONE';
