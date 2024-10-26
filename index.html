@@ -230,11 +230,17 @@
         }
         .plane {
             position:absolute;
-            top: 1290vh;
+            top: 1320vh;
             right: -170px;
             width: 160px;
             height:auto;
             display:block;
+        }
+	.footer {
+            width: 100vw;
+            bottom:-30px;
+            z-index:40;
+		position:relative;
         }
 
         @media (max-width: 600px) {
@@ -242,11 +248,7 @@
                 font-size: 2rem;
             }
         }
-        .footer {
-            width: 100vw;
-            bottom:0px;
-            z-index:40;
-        }
+        
         .mountainsandwater {
             width: 100vw;
             min-height: 100px;
@@ -258,8 +260,8 @@
             z-index:9;
         }
         .splash {
-            position: relative;
-            bottom: 70px;
+            position: absolute;
+            bottom: 99vh;
             width: 120px;
             left: 30%;
             z-index:50;
@@ -477,13 +479,13 @@
             <p></p>
         </div>
         <div class="text-section">
-            <p>These are questions for a Trained Professional, not a birthday party</p>
+            <p>These are questions for a Trained Professional™, not a birthday party</p>
         </div>
         <div class="text-section">
             <p>Instead, in the vein of getting to know myself better this year, there are some MUCH easier questions I want to ask:</p>
         </div>
         <div class="text-section">
-            <p>Is Tillamook ice cream really better than Breyer's or does it just feel fancier?</p>
+            <p>Is Tillamook ice cream really tastier than Breyer's or does it just feel fancier?</p>
         </div>
         <div class="text-section">
             <p>Is cold-pressed orange juice actually better, or am I just a sheep in Big Orange’s capitalist game?</p>
@@ -576,7 +578,7 @@
             });
 
             const scatteredClouds = document.querySelectorAll('.scattered-cloud');
-            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.32, 0.45, 0.26, 0.37, 0.24, 0.20, 0.39, 0.19, 0.23, 0.15];
+            const scatteredParallaxSpeeds = [0.3, 0.2, 0.4, 0.32, 0.45, 0.26, 0.37, 0.24, 0.20, 0.37, 0.19, 0.23, 0.26];
             scatteredClouds.forEach((cloud, index) => {
                 const parallaxAmount = scatteredParallaxSpeeds[index % scatteredParallaxSpeeds.length];
                 cloud.style.transform = `translateY(${window.scrollY * parallaxAmount}px)`;
