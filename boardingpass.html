@@ -1,37 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <title>Pear Airlines - Your Reservation</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight School Party</title>
     <style>
-        body {
+  body {
+            background-color: #f4f4f4;
+            font-family: sans-serif;
             margin: 0;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-            background: linear-gradient(to bottom, #87CEFA, #FFA756); /* Sunset gradient */
-            min-height: 100vh; /* Ensure gradient spans entire viewport height */
+            padding: 0;
+            font-size: 100%;
+		overflow-x:hidden;
+        }
+        input {
+            font-size: 1em;
+        }
+        button {
+            font-size: 1em;
+        }
+        select {
+            font-size: 1em;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 80%;
+            }
+            .header {
+                margin-top:0px;
+            }
+        }
+        @media (max-width: 1000px) {
+            .header {
+                margin-top:0px;
+                height:30vh;
+            }
+        }
+        @media (min-width: 1000px) {
+            .header {
+                margin-top:-80px;
+                height:40vh;
+            }
+        }
+
+        .header {
+            background-image: url('pearair3.png');
+            background-size: cover;
+            color: #fff;
+            /*padding: 20px;*/
+            text-align: left;
+            /*height: 30vh;*/
             display: flex;
-            flex-direction: column;
-		color:white;
-        }
- 
-        .content {
-		max-height:100vh;
-            	position: relative;
-            	padding: 20px;
-            	flex: 1; /* Allow this to expand and fill the remaining space */
-		text-align:center;
-		align-content:center;
-		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Add text shadow */
-		font-size:22px;
-		font-weight: bold;
-		align-items:center;
+            align-items: center;
+            position: relative;
+            min-width: 100vw;
+            opacity: 0.9;
+		background-position-x: center;
+		font-style: italic;
+		background-position-y: center;
         }
 
-	</style>
+        .ticketmaster-text {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            font-style: italic;
+            color: #fff;
+        }
+        .name-text {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            border-radius:8px;
+            padding:10px;
+            background-color:rgba(0, 0, 0, 0.3);
+            z-index:99;
+        }
 
-<div class="content">
+        .header-info {
+            max-width: 600px;
+            position: absolute;
+            bottom: 10px;
+            margin-left:20px;
+        }
+
+        .progress-container {
+            text-align: center;
+            max-width: 98%;
+            width: 700px;
+            margin: 0 auto;
+        }
+
+        .queue-container {
+            text-align: center;
+            max-width: 100%;
+            width: 800px;
+            margin: 20px auto 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.7);
+            box-sizing: border-box;
+        }
+
+        .queue-message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .queue-progress-bar {
+            background-color: #ccc;
+            height: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .friendlist {
+            display: none;
+            margin:10px auto;
+            font-size: 0.8em;
+            position:relative;
+            text-align:center;
+            width:30%;
+            max-width:150px;
+        }
+        .friends{
+            display:none;
+		font-style:italic;
+        }
+
+        .notcoming {
+            display:none;
+        }
+        .ava {
+            max-width:100%;
+            max-height:100%;
+            aspect-ratio:1/1;
+        }
+        .avaname {
+            position:absolute;
+            bottom:-1em;
+            width:100%;
+        }
+
+        .progress-bar {
+            background-color: #ccc;
+            height: 2px;
+            border-radius: 10px;
+            margin: 20px 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-step {
+            margin: 2px;
+        }
+
+        .queue-progress-text {
+            font-size: 2.5em;
+        }
+
+        .people-ahead-text {
+            font-size: 0.7em;
+            font-weight: bold;
+            opacity: 0.6;
+        }
+            @media (max-width: 600px) {
+            .ticketmaster-text {
+			font-size:16px;
+		}
+	.queue-message {
+            	font-size: 16px;
+        }  
+        }
+
+
+    </style>
+</head>
+<body>
+   <div style = "position:absolute;background-color:#6c916c;height:60vh;width:100vw;z-index:-999;"></div>
+    <!--<div class="name-text" id="name-text"></div>-->
+    <div class="header">
+        <div class="ticketmaster-text">Pear Airlines</div>
+        <div class="header-info">
+           <p>Juicy journies await with Pear Air!</p>
+        </div>
+    </div>
+    <div style="height:7px;background-color:white;width:100vw;"></div>
+    <div class = "wrapmargin" style="padding:20px;">
+    <div class="queue-container">
+        <div id = "OGqueue">
+            <div class="queue-message">
+		   <div class="content">
 <img id="boardingpassimg" src="" style="width:90%;max-height:50vh;margin:20px auto;"></img>
     <div class="name-text" id="name-text"></div>
  <div class = 'formnow'>
@@ -57,8 +224,15 @@
 </form>
 </div>
 </div>
- <script>
-        var querystring = location.search.toUpperCase();
+               
+            </div>
+        </div>
+        
+    </div>
+    </div>
+
+    <script>
+var querystring = location.search.toUpperCase();
         var guest
         console.log(querystring);
         if (querystring == '?KKLKPW') {
@@ -108,3 +282,4 @@
     </script>
 </body>
 </html>
+
