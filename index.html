@@ -59,8 +59,9 @@
             top: 80vh; /* Move the clouds container down */
             width: 100%;
             height: 50vh; /* Increase height to prevent clouds from being cut off */
-            overflow: visible;
+            overflow-y: visible;
             z-index: 1; /* Bring clouds above other elements */
+		overflow-x: hidden;
         }
 
         .cloud {
@@ -546,7 +547,7 @@
     </div>
     <img src="skydive.png" class="skydive" alt="Skydive Image">
     <div class="mountainswater">
-        <img src="rainiersun2.png" class="footer">
+        <img src="rainiersun3.png" class="footer">
         <img src="splash.png" class="splash">
          <div class="ocean">
              <div style="margin:auto;width:100vw;text-align:center;position:relative;top:20vh;color:white;">
@@ -607,7 +608,7 @@
             if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13.5), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
 		plane.style.display = 'inline';
             } else {
                 plane.style.display = 'none';
