@@ -146,7 +146,7 @@
         /* Example scattered clouds */
         .scattered-cloud.one {
             background-image: url('cloud3.png');
-            top: 120vh;
+            top: 100vh;
             left: 10%;
         }
 
@@ -260,6 +260,8 @@
             width: 120px;
             left: 30%;
             z-index:50;
+		margin-bottom:-70px;
+		display:flex;
         }
 
         
@@ -268,7 +270,7 @@
   width: 100vw;
   height: 100vh;
   background-image: linear-gradient(0deg, #182848, #2980b9);
-    bottom: 85px;
+	overflow:hidden;
 }
 
 .bubble {
@@ -277,7 +279,7 @@
   border-radius: 100%;
   position: relative;
   background-color: white;
-  bottom: 0px;
+  bottom: -30px;
   opacity: 0.2;
   animation: bubble 15s ease-in-out infinite,
     sideWays 4s ease-in-out infinite alternate;
@@ -289,7 +291,7 @@
     opacity: 0.06;
   }
   100% {
-    transform: translateY(-100vh);
+    transform: translateY(-120vh);
   }
 }
 
@@ -604,7 +606,7 @@
             }
             
             if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
-                const parallaxAmount = -1.05; // Skydive image scrolls faster than page
+                const parallaxAmount = -1.01; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
                 plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13.5), maxPosition)}px)`;
 		plane.style.display = 'inline';
