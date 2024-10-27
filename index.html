@@ -497,7 +497,7 @@
         <div class="text-section">
             <p>Is Tito's really the best vodka or do I just have decades-long brand loyalty?</p>
         </div>
-        <div class="text-section">
+        <div class="text-section" style="padding:15px 0px;">
             <p>So I’ve enrolled in</p> 
             <p style="font-size:26px;">✨FLIGHT SCHOOL✨</p>
             <p style="font-size:16px;">and oops I enrolled you with me</p>
@@ -608,7 +608,7 @@
             if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13), maxPosition)}px)`;
 		plane.style.display = 'inline';
             } else {
                 plane.style.display = 'none';
