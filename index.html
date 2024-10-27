@@ -444,7 +444,7 @@
 }
 
 	    
-        .mountainsandwater {
+        .mountainswater {
             width: 100vw;
             min-height: 100px;
             height:100vh;
@@ -605,10 +605,10 @@
                 skydive.style.display = 'none';
             }
             
-            if (scrollPosition > windowHeight*11.9) {
+            if (scrollPosition > windowHeight*11.9 && scrollPostion < windowheight*17) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * -0.95 + windowHeight*13.5), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13.5), maxPosition)}px)`;
             } else {
                 //plane.style.display = 'none';
             }
