@@ -590,8 +590,8 @@
             const skydive = document.querySelector('.skydive');
             const cloudsHeight = document.querySelector('.clouds').getBoundingClientRect().height;
             const scrollPosition = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const windowWidth = window.innerWidth;
+            const windowHeight = window.screen.height;
+            const windowWidth = window.screen.width;
             const plane = document.querySelector('.plane');
 
             // Show skydive image when clouds are in the middle of the viewport
