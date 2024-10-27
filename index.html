@@ -233,7 +233,7 @@
         }
         .plane {
             position:absolute;
-            top: 1320vh;
+            top: 1250vh;
             right: -170px;
             width: 160px;
             height:auto;
@@ -457,7 +457,7 @@
 </head>
 <body>
     <div class="sky">
-        <img class="giffle" src="flightwebp.webp?"></img>
+        <img class="giffle" src="flightwebp2.webp"></img>
         <div id="arrowcontainer" class="arrow-container" style="visibility:hidden;">
             <div class="arrow-down"></div>
         </div>
@@ -608,7 +608,7 @@
             if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13.5), maxPosition)}px)`;
 		plane.style.display = 'inline';
             } else {
                 plane.style.display = 'none';
