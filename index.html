@@ -604,12 +604,13 @@
                 skydive.style.display = 'none';
             }
             
-            if (scrollPosition > windowHeight*11.9 && scrollPosition < windowheight*17) {
+            if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
                 plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13.5), maxPosition)}px)`;
+		plane.style.display = 'inline';
             } else {
-                //plane.style.display = 'none';
+                plane.style.display = 'none';
             }
         });
         function clickin() {
