@@ -279,7 +279,7 @@
   width: 30px;
   height: 30px;
   border-radius: 100%;
-  position: absolute;
+  position: relative;
   background-color: white;
   bottom: 0px;
   opacity: 0.2;
@@ -603,7 +603,7 @@
             if (scrollPosition > windowHeight*11.9) {
                 const parallaxAmount = -1.05; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * -0.95 + windowHeight*13.5), maxPosition)}px)`;
             } else {
                 //plane.style.display = 'none';
             }
