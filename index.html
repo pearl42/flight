@@ -13,6 +13,7 @@
             min-height: 100vh; /* Ensure gradient spans entire viewport height */
             display: flex;
             flex-direction: column;
+		height:1950vh;
         }
 
         .sky {
@@ -125,8 +126,10 @@
         /* Scattered clouds */
         .scattered-clouds {
             position: absolute;
-            width: 100%;
+            width: 100vw;
             top: 100vh; /* Start at the bottom of the first viewport */
+		height:1900vh;
+		overflow-x:hidden;
         }
 
         .scattered-cloud {
@@ -168,13 +171,13 @@
         .scattered-cloud.five {
             background-image: url('cloud1.png');
             top: 350vh;
-            left: 90%;
+            left: 80%;
             transform: scaleX(-1);
         }
 
         .scattered-cloud.six {
             background-image: url('cloud2.png');
-            top: 480vh;
+            top: 540vh;
             left: 20%;
             transform: scaleX(-1);
         }
@@ -210,12 +213,12 @@
         }
         .scattered-cloud.twelve {
             background-image: url('cloud2.png');
-            top: 900vh;
-            left: 90%;
+            top: 1020vh;
+            left: 5%;
         }
         .scattered-cloud.thirteen {
             background-image: url('cloud3.png');
-            top: 1010vh;
+            top: 1110vh;
             left: 40%;
         }
 
@@ -248,14 +251,7 @@
                 font-size: 2rem;
             }
         }
-        
-        .mountainsandwater {
-            width: 100vw;
-            min-height: 100px;
-            height:100vh;
-            overflow:hidden;
-		position:relative;
-        }
+        	    
         p {
             z-index:9;
         }
@@ -446,6 +442,15 @@
     transform: translateY(-15px);
   }
 }
+
+	    
+        .mountainsandwater {
+            width: 100vw;
+            min-height: 100px;
+            height:100vh;
+            overflow-x:hidden;
+		position:relative;
+        }
 
 
     </style>
