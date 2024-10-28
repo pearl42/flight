@@ -609,9 +609,9 @@
             }
             
             if (scrollPosition > windowHeight*10.9 && scrollPosition < windowHeight*17) {
-                const parallaxAmount = -1.2; // Skydive image scrolls faster than page
+                const parallaxAmount = 1.02; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max(parallaxAmount*((windowHeight*12.5) - scrollPosition), maxPosition)}px)`;
 		plane.style.display = 'inline';
             } else {
                 plane.style.display = 'none';
@@ -645,7 +645,7 @@
 	    setTimeout(function() {
                
                 document.getElementById('arrowcontainer').style.visibility = 'visible';
-            }, 16000);
+            }, 14000);
     </script>
 </body>
 </html>
