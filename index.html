@@ -58,7 +58,7 @@
             position: absolute;
             top: 80vh; /* Move the clouds container down */
             width: 100%;
-            height: 50vh; /* Increase height to prevent clouds from being cut off */
+            height: 100vh; /* Increase height to prevent clouds from being cut off */
             overflow-y: visible;
             z-index: 1; /* Bring clouds above other elements */
 		overflow-x: hidden;
@@ -414,7 +414,7 @@
   animation: bounce 1600ms infinite cubic-bezier(0.445, 0.05, 0.55, 0.95);
   height: 20px;
 	position:absolute;
-	top:85%;
+	top:80%;
 	right:50%;
 	margin:-18px;
 }
@@ -493,7 +493,7 @@
             <p>Is Tillamook ice cream really tastier than Haagen-Dazs or does it just feel fancier?</p>
         </div>
         <div class="text-section">
-            <p>Can I actually tell the difference between the $2 bear-bottle honey and the local farmer's market honey I buy?</p>
+            <p>Can I actually tell the difference between the supermarket bear-bottle honey and the much-more-expensive local farmer's market honey?</p>
         </div>
         <div class="text-section">
             <p>Is Tito's really the best vodka or do I just have decades-long brand loyalty?</p>
@@ -608,7 +608,7 @@
                 skydive.style.display = 'none';
             }
             
-            if (scrollPosition > windowHeight*11.9 && scrollPosition < windowHeight*17) {
+            if (scrollPosition > windowHeight*10.9 && scrollPosition < windowHeight*17) {
                 const parallaxAmount = -1.01; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
                 plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*13), maxPosition)}px)`;
@@ -645,7 +645,7 @@
 	    setTimeout(function() {
                
                 document.getElementById('arrowcontainer').style.visibility = 'visible';
-            }, 18000);
+            }, 16000);
     </script>
 </body>
 </html>
