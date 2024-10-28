@@ -594,12 +594,12 @@
             const skydive = document.querySelector('.skydive');
             const cloudsHeight = document.querySelector('.clouds').getBoundingClientRect().height;
             const scrollPosition = window.scrollY;
-            const windowHeight = window.screen.height;
-            const windowWidth = window.screen.width;
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
             const plane = document.querySelector('.plane');
 
             // Show skydive image when clouds are in the middle of the viewport
-            if (scrollPosition > windowHeight/1.05 && scrollPosition < windowHeight*11) {
+            if (scrollPosition > windowHeight/1.05 && scrollPosition < windowHeight*9.5) {
                 skydive.style.display = 'block';
                 const parallaxAmount = 1.15; // Skydive image scrolls faster than page
                 const maxPosition = document.body.scrollHeight - (skydive.offsetHeight - 200); // Cap position to page height
@@ -609,9 +609,9 @@
             }
             
             if (scrollPosition > windowHeight*10.9 && scrollPosition < windowHeight*17) {
-                const parallaxAmount = -1.01; // Skydive image scrolls faster than page
+                const parallaxAmount = -1.2; // Skydive image scrolls faster than page
                 const maxPosition = ((windowWidth*-1)-170); // Cap position to page height
-                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*10.9), maxPosition)}px)`;
+                plane.style.transform = `translateX(${Math.max((scrollPosition * parallaxAmount + windowHeight*12.5), maxPosition)}px)`;
 		plane.style.display = 'inline';
             } else {
                 plane.style.display = 'none';
