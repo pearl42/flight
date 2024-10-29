@@ -202,7 +202,7 @@
                 <p style="margin:0px;font-weight:bold;">Flight Info:</p>
                 <p style="margin:0px;font-size:14px;">Flight #A1996</p>
                 <p style="margin:0px;font-size:14px;">November 16, 2024</p>		    
-		<p style="margin:0px;font-size:14px;">Boarding Time - 8:00PM</p>
+		<p style="margin:0px;font-size:14px;">Boarding Time - 7:00PM</p>
 		<p style="margin:0px;font-size:14px;">Boarding from Gate 28 at 11016 100th Ave NE</p>
                 <p>Check-in remains open until 24 hours before departure, so feel free to return to this page if you need to change anything about your reservation.</p>
                 <p class='friends'>Need to carpool? Here are others you may know sharing the same flightpath:</p>
@@ -256,7 +256,7 @@
             guest = 'Gabby';
             document.querySelector('.friends').style.display = "block";
             document.getElementById('Kazue').style.display = 'inline-flex';
-            document.getElementById('Kevin').style.display = 'inline-flex';
+            document.getElementById('Amy').style.display = 'inline-flex';
             document.getElementById('Tina').style.display = 'inline-flex';
         }else if (querystring == '?RHLKPW'){
             guest = 'Ryan Hammond';
@@ -293,8 +293,20 @@
             document.getElementById('Tina').style.display = 'inline-flex';
             document.getElementById('Thomas').style.display = 'inline-flex';
             document.getElementById('Gabby').style.display = 'inline-flex';
-        } else if (querystring == '?RKLKPW'){
-            guest = 'Ruth';
+        } else if (querystring == '?DDLKPW'){
+            guest = 'Des and Dre';
+	} else if (querystring == '?KHLKPW'){
+            guest = 'Kara and Hayden';
+	} else if (querystring == '?VGLKPW'){
+            guest = 'Vaish';
+		document.querySelector('.friends').style.display = "block";
+            document.getElementById('Amy').style.display = 'inline-flex';
+		document.getElementById('Gabby').style.display = 'inline-flex';
+		document.getElementById('Tina').style.display = 'inline-flex';
+	} else if (querystring == '?JGLKPW'){
+            guest = 'Julia and Gabe';
+	} else if (querystring == '?JJLKPW'){
+            guest = 'Jessica and Jasper';
         } else if (querystring == '?LILKPW'){
             guest = 'Linda and Ian';
         } else if (querystring == '?success'){
