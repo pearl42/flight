@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="refresh" content="120">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="./letters.css">
+</head>
+<style>
+    * {
+        font-size: 62, 5%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    .vertical-line {
+        position: fixed;
+        /* Stay in place on the screen */
+        top: 0;
+        /* Start at the top */
+        transform: translateX(-50%);
+        /* Adjust for line width */
+        height: 25vh;
+        /* 25% of the viewport height */
+        width: 20px;
+        /* Line width */
+        background-color: #191919;
+        /* Line color */
+        z-index: -1;
+    }
+
+    body {
+        background-image: url("./background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: "Fire Sans", sans-serif;
+        height: 100%;
+        width: 100%;
+        min-height: 100vh;
+        opacity: 0.97;
+        display: flex;
+        margin-top: 40px;
+        justify-content: center;
+    }
+
+    main {
+        background-color: #191919;
+        width: 80%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0.3rem;
+        margin: 3%;
+    }
+
+    #header {
+        margin: 0px;
+        width: 100%;
+        height: 18rem;
+        display: flex;
+        padding-top: 30px;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    h1 {
+        width: 100%;
+        background-color: #FFCC03;
+        font-size: 3rem;
+        color: #191919;
+        text-transform: uppercase;
+        cursor: default;
+        margin-bottom: 10px;
+        padding-left: 2rem;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        align-items: center;
+    }
+
+    .plane-icon {
+        float: right;
+        margin-right: 2rem;
+    }
+
+    .scoreboard {
+        width: 100%;
+        text-align: left;
+        padding-left: 0rem;
+    }
+
+    .score {
+        color: #FFCC03;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        color: #141a39;
+        cursor: default;
+    }
+
+    tr {
+        transition: all 0.2s ease-in-out;
+        border-radius: 0.2rem;
+    }
+
+    td {
+        height: 5rem;
+        font-family: "Rubik", sans-serif;
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+        position: relative;
+    }
+
+    .departure-board-entry {
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .name {
+        font-weight: bold;
+        font-size: 1.3rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+    }
+
+    .name:first-child {
+        width: 10rem;
+    }
+
+    #buttons {
+        width: 100%;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .continue {
+        width: 11rem;
+        height: 3rem;
+        font-family: "Rubik", sans-serif;
+        font-size: 1.3rem;
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #5c5be5;
+        border: 0;
+        border-bottom: 0.2rem solid #3838b8;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+
+    .continue:active {
+        border-bottom: 0;
+    }
+
+    @media (max-width: 740px) {
+        * {
+            font-size: 70%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        * {
+            font-size: 55%;
+        }
+    }
+
+    @media (max-width: 390px) {
+        * {
+            font-size: 45%;
+        }
+    }
+</style>
+
+<body>
+    <div class="vertical-line" style="left: 10%;"></div>
+    <div class="vertical-line" style="left: 40%;"></div>
+    <div class="vertical-line" style="left: 60%;"></div>
+    <div class="vertical-line" style="left: 90%;"></div>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <div class="header" id="header1">
+                </div>
+                <div class="scoreboard" id="scoreboard1">
+                    <table>
+                        <thead id="scoreboardHead1">
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <div class="header" id="header2">
+                </div>
+                <div class="scoreboard" id="scoreboard2">
+                    <table>
+                        <thead id="scoreboardHead2">
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // This contains an map of all of the results. The key for the map is the category name 
+        // (i.e. Apples) and the value is a entry map that represents a flight (i.e. the Apples
+        // flight) and each flight is saved as a key value pair where the key is the item name
+        // (i.e. Honeycrisp) and the value is the average score (i.e. 3.5).
+        const allResults = new Map();
+
+        // This contains a list of all of the scoreboard names. It's used to ensure that the
+        // ordering of the scoreboard rotation stays the same because refreshing the scoreboard
+        // might result in sheets being fetched out of order.
+        let scoreboardOrder = [];
+        let scoreboardOrderInitialized = false;
+        let currentScoreboardRotation = 0;
+
+        var flights = [];
+        const spreadsheetId = '14KCaNIZTTuHi014FN7qo8eKEWBk5tyk9qDq57Ed_HAI';
+        let flightsFetched = 0;
+
+        function get_text_between_setResponse(text) {
+            const start_index = text.indexOf('setResponse(') + 12;
+            const end_index = text.indexOf(');');
+            return text.substring(start_index, end_index);
+        }
+
+        function getRating(rating) {
+            if (rating == "1st") {
+                return 4;
+            }
+
+            if (rating == "2nd") {
+                return 3;
+            }
+
+            if (rating == "3rd") {
+                return 2;
+            }
+
+            if (rating == "4th") {
+                return 1;
+            }
+
+            return rating;
+        }
+
+        function getData(sheetName) {
+            var range = sheetName + '!B1:H100';
+
+            var url = 'https://docs.google.com/spreadsheets/d/' + spreadsheetId + '/gviz/tq?range=' + range;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function () {
+                let results = new Map();
+                let table = JSON.parse(get_text_between_setResponse(xhr.responseText)).table;
+                console.log(table);
+                let categoryName = sheetName;
+
+                // Iterate through each column skipping the first column (Name).
+                for (let i = 1; i < table.cols.length; i++) {
+                    let itemName = table.cols[i].label.slice(2);
+                    let lastRow = 0;
+
+                    if (categoryName == "Cocktails") {
+                        lastRow = 2;
+                        itemName = table.rows[1].c[i]?.v;
+                    }
+
+                    // For each column, iterate through all of the players and calculate an average.
+                    // Start from the end of the sheet (latest records). If a duplicate record is
+                    // found, ignore it and keep the newer one.
+                    let count = 0;
+                    let sum = 0;
+                    let guestsAlreadyRated = new Set();
+                    for (var j = table.rows.length - 1; j >= lastRow; j--) {
+                        let guestName = table.rows[j].c[0]?.v;
+                        let rating = getRating(table.rows[j].c[i]?.v);
+
+                        if (guestName && !guestsAlreadyRated.has(guestName) && rating > 0) {
+                            count++;
+                            sum += rating;
+                        }
+
+                        guestsAlreadyRated.add(guestName);
+                    }
+
+                    // Calculate the average score for the item.
+                    let averageScore = sum / count;
+
+                    // Add the scores to the results.
+                    results.set(itemName, averageScore);
+                }
+
+                // Sort the results based on the average score.
+                const sortedResults = new Map([...results.entries()].sort((a, b) => b[1] - a[1]));
+
+                // Add the sorted results to allResults.
+                allResults.set(categoryName, sortedResults);
+
+                if (!scoreboardOrderInitialized) {
+                    scoreboardOrder.push(categoryName);
+                }
+
+                flightsFetched++;
+                if (flightsFetched == flights.length) {
+                    scoreboardOrderInitialized = true;
+                    updateScoreboard(1, scoreboardOrder[currentScoreboardRotation % flights.length]);
+                    updateScoreboard(2, scoreboardOrder[(currentScoreboardRotation + 1) % flights.length]);
+                }
+            };
+
+            xhr.send();
+        }
+
+        function clearScoreboard() {
+            for (let i = 1; i <= 2; i++) {
+                const element = document.getElementById('scoreboardHead' + i);
+                if (element) {
+                    while (element.firstChild) {
+                        element.removeChild(element.firstChild);
+
+                    }
+                }
+
+                const header = document.getElementById('header' + i);
+                if (header) {
+                    while (header.firstChild) {
+                        header.removeChild(header.firstChild);
+
+                    }
+                }
+            }
+        }
+
+        function truncateOrPad(str) {
+            let stringLength = 19;
+            if (str.length > stringLength) {
+                return str.slice(0, stringLength);
+            } else {
+                return str.padEnd(stringLength, " ");
+            }
+        }
+
+        // Add the string to the div container.
+        function addStringToContainer(container, entryString) {
+            const entryContainer = document.createElement('div');
+            entryContainer.className = 'departure-board-entry';
+            entryString = truncateOrPad(entryString.toUpperCase());
+
+            for (let i = 0; i < entryString.length; i++) {
+                let letter = entryString[i];
+
+                if (letter == " ") {
+                    letter = "blank";
+                }
+                if (letter == ".") {
+                    letter = "period";
+                }
+                if (letter == "'") {
+                    letter = "apostrophe";
+                }
+                const spanCharacter = document.createElement('span');
+                spanCharacter.className = 'letter letter-' + letter;
+                entryContainer.appendChild(spanCharacter);
+            }
+            container.appendChild(entryContainer);
+        }
+
+        function updateScoreboard(scoreboardNumber, flightName) {
+            let flightScores = allResults.get(flightName);
+
+            const header = document.getElementById('header' + scoreboardNumber);
+            const headerElement = document.createElement('h1');
+            headerElement.textContent = flightName;
+
+            const departuresPlaneIcon = document.createElement('img');
+            departuresPlaneIcon.className = 'plane-icon';
+            departuresPlaneIcon.src = './departures.png';
+            departuresPlaneIcon.width = 60;
+            departuresPlaneIcon.height = 60;
+            headerElement.appendChild(departuresPlaneIcon);
+            header.appendChild(headerElement);
+            let scoresMap = flightScores.entries();
+
+            let previousScore = 0;
+            for (const [name, score] of scoresMap) {
+                const scoreboard = document.getElementById('scoreboardHead' + scoreboardNumber);
+                const row = document.createElement('tr');
+
+                let entryString = "";
+
+                let scoreString = score.toString();
+                if (score >= 10) {
+                    scoreString += " ";
+                }
+                if (Number.isInteger(score) && score < 10 && score > 0) {
+                    scoreString += ".0";
+                }
+
+                for (let i = 0; i < 3; i++) {
+                    entryString += scoreString[i];
+                }
+
+                entryString += " " + name;
+                if (!name) {
+                    entryString = "";
+                }
+                addStringToContainer(row, entryString);
+
+                scoreboard.appendChild(row);
+            }
+        }
+
+        function getSheetNames() {
+            var range = 'List of sheets' + '!B1:H100';
+
+            var url = 'https://docs.google.com/spreadsheets/d/' + spreadsheetId + '/gviz/tq?range=' + range;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function () {
+                let results = new Map();
+                let table = JSON.parse(get_text_between_setResponse(xhr.responseText)).table;
+                for (let i = 0; i < table.rows.length; i++) {
+                    flights.push(table.rows[i].c[0].v);
+                }
+
+                for (let i = 0; i < flights.length; i++) {
+                    getData(flights[i]);
+                }
+            }
+
+            xhr.send();
+        }
+
+        getSheetNames();
+
+        function refreshDataAndRotateScoreboard() {
+            allResults.clear();
+            flightsFetched = 0;
+            currentScoreboardRotation += 2;
+
+            clearScoreboard();
+            for (let i = 0; i < flights.length; i++) {
+                getData(flights[i]);
+            }
+        }
+
+        setInterval(refreshDataAndRotateScoreboard, 15000); // 15000 milliseconds = 15 seconds
+    </script>
+</body>
+
+</html>

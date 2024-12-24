@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="refresh" content="120">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap"
+        rel="stylesheet" />
+</head>
+<style>
+    * {
+        font-size: 62, 5%;
+        box-sizing: border-box;
+        margin: 0;
+    }
+
+    body {
+        background-image: url("./background.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 20px;
+        /* Adjust spacing as needed */
+        padding: 20px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 370px;
+        background-color: #f6ffed;
+        -webkit-box-shadow: 0px 5px 15px 8px #e4e7fb;
+        box-shadow: 0px 5px 15px 8px #e4e7fb;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 0.5rem;
+    }
+
+    .scoreboard-container {
+    width: 100%;
+    height: 100%; /* Ensures the container is full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+    .scoreboard-container h1 {
+        text-align: center;
+        font-size: 1.5em;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    /* Hide tables initially */
+    .scoreboard-container table {
+        display: none;
+    }
+
+    /* Subtitle styling */
+    .scoreboard-container h2 {
+        text-align: center;
+        font-size: 1.2em;
+        color: #666;
+    }
+
+    /* Expanded class to show tables */
+    .scoreboard-container.expanded table {
+        display: table;
+    }
+
+    #header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2.5rem 2rem;
+        text-align: center;
+    }
+
+    h1 {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.7rem;
+        color: #141a39;
+        text-transform: uppercase;
+        cursor: default;
+    }
+
+    h2 {
+        font-family: "Rubik", sans-serif;
+        font-size: 1.2rem;
+        color: #141a39;
+        cursor: default;
+    }
+
+    #scoreboard {
+        width: 100%;
+        position: relative;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        color: #141a39;
+        cursor: default;
+        margin-top: 10px;
+    }
+
+    tr {
+        transition: all 0.2s ease-in-out;
+        border-radius: 0.2rem;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e4facd;
+    }
+
+    tr:nth-child(even) {
+        background-color: #b3f56c;
+    }
+
+    td {
+        height: 5rem;
+        font-family: "Rubik", sans-serif;
+        font-size: 1.4rem;
+        padding: 1rem 2rem;
+        position: relative;
+    }
+
+    .number {
+        width: 1rem;
+        font-size: 2.2rem;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .name {
+        font-weight: bold;
+        font-size: 1.3rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: left;
+    }
+
+    .name:first-child {
+        width: 10rem;
+    }
+
+    .gold-medal {
+        height: 3rem;
+        margin-left: 1.5rem;
+    }
+
+    #buttons {
+        width: 100%;
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .exit {
+        width: 11rem;
+        height: 3rem;
+        font-family: "Rubik", sans-serif;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        color: #7e7f86;
+        border: 0;
+        background-color: #fff;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+
+    .exit:hover {
+        border: 0.1rem solid #5c5be5;
+    }
+
+    .continue {
+        width: 11rem;
+        height: 3rem;
+        font-family: "Rubik", sans-serif;
+        font-size: 1.3rem;
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #5c5be5;
+        border: 0;
+        border-bottom: 0.2rem solid #3838b8;
+        border-radius: 2rem;
+        cursor: pointer;
+    }
+
+    .continue:active {
+        border-bottom: 0;
+    }
+
+    @media (max-width: 740px) {
+        * {
+            font-size: 70%;
+        }
+    }
+
+    @media (max-width: 500px) {
+        * {
+            font-size: 55%;
+        }
+    }
+
+    @media (max-width: 390px) {
+        * {
+            font-size: 45%;
+        }
+    }
+</style>
+
+<body>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Most basic</h1>
+                <h2>Closest to average ratings</h2>
+                <table>
+                    <thead id="most-basic-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Food lover</h1>
+                <h2>Highest average rating</h2>
+                <table>
+                    <thead id="food-lover-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Most similar to Pearl</h1>
+                <h2>Most similar tastes to Pearl</h2>
+                <table>
+                    <thead id="most-similar-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Biggest contrarian</h1>
+                <h2>Furthest from average ratings</h2>
+                <table>
+                    <thead id="biggest-contrarian-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Biggest hater</h1>
+                <h2>Lowest average rating</h2>
+                <table>
+                    <thead id="biggest-hater-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <main>
+        <div id="header">
+            <div class="scoreboard-container">
+                <h1 onclick="toggleVisibility(this)">Least similar to Pearl</h1>
+                <h2>Least similar tastes to Pearl</h2>
+                <table>
+                    <thead id="least-similar-scoreboard">
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Contains a map of all of the guest scores. The key to the map is the guest name
+        // and the value is an array of key-value pairs of all of guests ratings where the
+        // keys are the ratings and the values are the corresponding average ratings for
+        // the item.
+        const guestScores = new Map();
+
+        // Contains a map of all of the guest scores. The key to the map is the guest name
+        // and the value is an array of score differences compared to Pearl's scores
+        const guestSimilarityScores = new Map();
+
+
+        var flights = [];
+        const spreadsheetId = '14KCaNIZTTuHi014FN7qo8eKEWBk5tyk9qDq57Ed_HAI';
+        let flightsFetched = 0;
+
+        // The minimum number of flights required for a guest to be included.
+        const minimumFlightsRequired = 8;
+
+        function get_text_between_setResponse(text) {
+            const start_index = text.indexOf('setResponse(') + 12;
+            const end_index = text.indexOf(');');
+            return text.substring(start_index, end_index);
+        }
+
+        function addGuestScore(guestName, score, averageScore) {
+            // Check if the guest already exists in the map
+            if (!guestScores.has(guestName)) {
+                // If not, create a new array for the guest
+                guestScores.set(guestName, []);
+            }
+
+            // Get the guest's score array
+            const guestScoreArray = guestScores.get(guestName);
+
+            // Add the guest's score and average score to the array
+            guestScoreArray.push({ score: score, averageScore: averageScore });
+        }
+
+        function addGuestSimilarityScore(guestName, score) {
+            // Check if the guest already exists in the map
+            if (!guestSimilarityScores.has(guestName)) {
+                // If not, create a new array for the guest
+                guestSimilarityScores.set(guestName, []);
+            }
+
+            // Get the guest's score array and add it to the map.
+            const guestScoreArray = guestSimilarityScores.get(guestName);
+            guestScoreArray.push(score);
+        }
+
+        // Returns the average score for the guest in the given score map.
+        function getAverageScoreForGuest(guestName, scoreMap) {
+            const guestScoreArray = scoreMap.get(guestName);
+            let sum = 0;
+            let count = 0;
+
+            if (guestScoreArray.length < minimumFlightsRequired) {
+                console.log('Average score for ' + guestName + ' ignored because only ' + guestScoreArray.length + ' flights rated.');
+                return -1;
+            }
+
+            for (const score of guestScoreArray) {
+                if (score.score > 0) {
+                    sum += score.score;
+                    count++;
+                }
+            }
+
+            let averageScore = 0;
+            if (count > 0) {
+                averageScore = sum / count;
+            }
+
+            console.log('Average score for' + guestName + ":" + averageScore);
+            return averageScore;
+        }
+
+        // Returns the average score for the guest in the given score map.
+        function getAverageSimilarityScoreForGuest(guestName) {
+            const guestScoreArray = guestSimilarityScores.get(guestName);
+            let sum = 0;
+            let count = 0;
+
+            if (guestScoreArray.length < minimumFlightsRequired) {
+                console.log('Average score for ' + guestName + ' ignored because only ' + guestScoreArray.length + ' flights rated.');
+                return -1;
+            }
+
+            for (const score of guestScoreArray) {
+                sum += score;
+                count++;
+            }
+
+            let averageScore = 0;
+            if (count > 0) {
+                averageScore = sum / count;
+            }
+
+            return averageScore;
+        }
+
+        // Returns the average variance for the guest where variance is defined as the difference between
+        // the guest's score and the average score for the item.
+        function getAverageVarianceScoreForGuest(guestName) {
+            const guestScoreArray = guestScores.get(guestName);
+            let varianceSum = 0;
+            let count = 0;
+
+            if (guestScoreArray.length < minimumFlightsRequired) {
+                console.log('Average score for ' + guestName + ' ignored because only ' + guestScoreArray.length + ' flights rated.');
+                return -1;
+            }
+
+            for (const score of guestScoreArray) {
+                if (score.score > 0) {
+                    varianceSum += Math.abs(score.score - score.averageScore);
+                    count++;
+                }
+            }
+
+            let averageVariance = 0;
+            if (count > 0) {
+                averageVariance = varianceSum / count;
+            }
+
+            console.log('Variance score for' + guestName + ":" + averageVariance);
+            return averageVariance;
+        }
+
+        function getRating(rating) {
+            if (rating == "1st") {
+                return 4;
+            }
+
+            if (rating == "2nd") {
+                return 3;
+            }
+
+            if (rating == "3rd") {
+                return 2;
+            }
+
+            if (rating == "4th") {
+                return 1;
+            }
+
+            return rating;
+        }
+
+        function getData(sheetName) {
+            var range = sheetName + '!B1:H100';
+            var url = 'https://docs.google.com/spreadsheets/d/' + spreadsheetId + '/gviz/tq?range=' + range;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function () {
+                let results = new Map();
+                let table = JSON.parse(get_text_between_setResponse(xhr.responseText)).table;
+                console.log(table);
+                let categoryName = sheetName;
+
+                let lastRow = 0;
+                if (categoryName == "Cocktails") {
+                    lastRow = 2;
+                }
+
+                // The average score per item. The key is the column number for the item and the value is the
+                // average score for the item.
+                const averageScoresPerItem = new Map();
+
+                // Iterate through all of the rows and calculate the average for each item and save it to a map.
+                for (let i = 0; i < table.cols.length; i++) {
+                    // For each column, iterate through all of the guests and calculate an average.
+                    let count = 0;
+                    let sum = 0;
+                    
+                    // Start from the end of the sheet (latest records). If a duplicate record is
+                    // found, ignore it and keep the newer one.
+                    let guestsAlreadyRated = new Set();
+                    for (var j = table.rows.length - 1; j >= lastRow; j--) {
+                        let guestName = table.rows[j].c[0]?.v;
+
+                        let rating = getRating(table.rows[j].c[i]?.v);
+                        if (guestName && !guestsAlreadyRated.has(guestName) && rating > 0) {
+                            count++;
+                            sum += rating;
+                        }
+
+                        if (guestName) {
+                            guestsAlreadyRated.add(guestName);
+                        }
+                    }
+
+                    // Calculate the average score for the item.
+                    let averageScore = 0;
+                    if (count > 0) {
+                        averageScore = sum / count;
+                    }
+
+                    // Add the scores to the results.
+                    averageScoresPerItem.set(i, averageScore);
+                }
+
+                // Iterate through all of the rows and for each guest save all of their ratings and corresponding
+                // average rating to guestScores.
+                let guestsAlreadyRated = new Set();
+                for (var i = table.rows.length - 1; i >= lastRow; i--) {
+                    let guestName = table.rows[i].c[0]?.v;
+
+                    if (guestName && !guestsAlreadyRated.has(guestName)) {
+                        for (let j = 1; j < table.cols.length; j++) {
+                            let rating = getRating(table.rows[i].c[j]?.v);
+                            if (rating > 0) {
+                                addGuestScore(guestName, rating, averageScoresPerItem.get(j));
+                            }
+                        }
+                    }
+
+                    if (guestName) {
+                        guestsAlreadyRated.add(guestName);
+                    }
+                }
+
+                // The average Pearl score. The key is the column number for the item and the value is 
+                // Pearl's score for the item.
+                const averagePearlScore = new Map();
+
+                // Iterate through all of the rows to find Pearl and then save all of Pearl's scores to a map.
+                for (let i = lastRow; i < table.rows.length; i++) {
+                    if (table.rows[i].c[0]?.v == "Pearl") {
+                        for (let j = 1; j < table.cols.length; j++) {
+                            let pearlScore = table.rows[i].c[j]?.v;
+                            if (pearlScore > 0) {
+                                averagePearlScore.set(j, table.rows[i].c[j].v);
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                if (averagePearlScore.length == 0) {
+                    console.log("Couldn't find Pearls score for sheet " + spreadsheetId + ".");
+                } else {
+                    guestsAlreadyRated.clear();
+                    for (var i = table.rows.length - 1; i >= lastRow; i--) {
+                        let guestName = table.rows[i].c[0]?.v;
+                        // For all other guests, save the difference of their score and Pearl's score to guestScores.
+                        if (guestName && !guestsAlreadyRated.has(guestName) && guestName != "Pearl") {
+                            for (let j = 1; j < table.cols.length; j++) {
+                                let rating = getRating(table.rows[i].c[j]?.v);
+                                if (rating > 0  && averagePearlScore.get(j) > 0) {
+                                    addGuestSimilarityScore(guestName, Math.abs(rating - averagePearlScore.get(j)));
+                                }
+                            }
+                        }
+
+                        if (guestName) {
+                            guestsAlreadyRated.add(guestName);
+                        }
+                    }
+                }
+
+                flightsFetched++;
+                if (flightsFetched == flights.length) {
+                    // Update the scoreboard.
+                    populateScoreboards();
+                }
+            };
+
+            xhr.send();
+        }
+
+        function toggleVisibility(element) {
+            const container = element.parentElement;
+            container.classList.toggle('expanded');
+        }
+
+        // Get the sheet names and then iterate through all of the sheets and call getData on each sheet.
+        function getSheetNames() {
+            var range = 'List of sheets' + '!B1:H100';
+            var url = 'https://docs.google.com/spreadsheets/d/' + spreadsheetId + '/gviz/tq?range=' + range;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function () {
+                let results = new Map();
+                let table = JSON.parse(get_text_between_setResponse(xhr.responseText)).table;
+                for (let i = 0; i < table.rows.length; i++) {
+                    flights.push(table.rows[i].c[0].v);
+                }
+
+                for (let i = 0; i < flights.length; i++) {
+                    getData(flights[i]);
+                }
+            }
+
+            xhr.send();
+        }
+
+        // Populate an individual scoreboard.
+        function populateScoreboard(scoreMap, scoreboardId, ascendingOrder) {
+            let rank = 0;
+            let previousScore;
+            for (let i = 0; i < Math.min(3, scoreMap.length); i++) {
+                let mapIndex = i;
+                if (ascendingOrder) {
+                    mapIndex = scoreMap.length - 1 - i;
+                }
+                let score = scoreMap[mapIndex][1];
+                let guestName = scoreMap[mapIndex][0];
+                if (!previousScore || previousScore != score) {
+                    rank++;
+                    previousScore = score;
+                }
+
+                const scoreboard = document.getElementById(scoreboardId);
+                const row = document.createElement('tr');
+
+                const numberCell = document.createElement('td');
+                numberCell.className = 'number';
+                numberCell.textContent = rank;
+
+                const nameCell = document.createElement('td');
+                nameCell.className = 'name';
+                nameCell.textContent = guestName;
+
+                const scoreCell = document.createElement('td');
+                scoreCell.className = 'score';
+                scoreCell.textContent = score.toFixed(2);
+
+                row.appendChild(numberCell);
+                row.appendChild(nameCell);
+                row.appendChild(scoreCell);
+                scoreboard.appendChild(row);
+            }
+        }
+
+        function populateScoreboards() {
+            // Create a map of the average scores. The key is the guest name and the value is the guest's
+            // average score.
+            const averageScores = new Map();
+            for (const [guestName, guestScoreArray] of guestScores) {
+                let score = getAverageScoreForGuest(guestName, guestScores);
+                if (score != -1) {
+                    averageScores.set(guestName, score);
+                }
+            }
+            const sortedAverageScores = [...averageScores.entries()].sort((a, b) => b[1] - a[1]);
+
+            // Create a map of the average variance scores. The key is the guest name and the value is the 
+            // guest's average variance score.
+            const averageVarianceScores = new Map();
+            for (const [guestName, guestScoreArray] of guestScores) {
+                let score = getAverageVarianceScoreForGuest(guestName);
+                if (score != -1) {
+                    averageVarianceScores.set(guestName, score);
+                }
+            }
+            const sortedAverageVarianceScores = [...averageVarianceScores.entries()].sort((a, b) => b[1] - a[1]);
+
+            // Create a map of the similarity scores. The key is the guest name and the value is the guest's
+            // average similarity score to Pearl.
+            const similarityScores = new Map();
+            for (const [guestName, guestScoreArray] of guestSimilarityScores) {
+                let score = getAverageSimilarityScoreForGuest(guestName, guestSimilarityScores);
+                if (score != -1) {
+                    similarityScores.set(guestName, score);
+                }
+            }
+            const sortedSimilarityScores = [...similarityScores.entries()].sort((a, b) => b[1] - a[1]);
+
+            // Populate all six scoreboards.
+            populateScoreboard(sortedAverageScores, 'biggest-hater-scoreboard', true);
+            populateScoreboard(sortedAverageScores, 'food-lover-scoreboard', false);
+            populateScoreboard(sortedAverageVarianceScores, 'biggest-contrarian-scoreboard', false);
+            populateScoreboard(sortedAverageVarianceScores, 'most-basic-scoreboard', true);
+            populateScoreboard(sortedSimilarityScores, 'most-similar-scoreboard', true);
+            populateScoreboard(sortedSimilarityScores, 'least-similar-scoreboard', false);
+        }
+
+        // Kick things off by first getting the sheet names. Called when the page loads.
+        getSheetNames();
+    </script>
+</body>
+
+</html>
